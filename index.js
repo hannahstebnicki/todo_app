@@ -1,4 +1,4 @@
-import App from './App';
+import App from './pages/App';
 import React from 'react';
 
 const Index = () => (
