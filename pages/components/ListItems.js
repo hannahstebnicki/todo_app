@@ -2,27 +2,24 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FlipMove from 'react-flip-move';
 
+
 function ListItems(props) {
     const items = props.items;
+
     const listItems = items.map(item => {
 
-        return <div className="list" key={item.key}>
-            <p>
-                <input type="text" id={item.key} value={item.text} onChange={(e) => {
+        return <div className="list input-group mb-3" key={item.key}>
+            <div className="input-group-prepend">
+                <div className="input-group-text">
+                    <input type="checkbox" className="strikeThrough" aria-label="Checkbox for following text input" />
+                </div>
+                <input type="text" className="form-control" aria-label="Text input with checkbox" id={item.key} value={item.text} onChange={(e) => {
                     props.setUpdate(e.target.value, item.key)
                 }} />
-                <span>
-
-                    <FontAwesomeIcon className="faicons" onClick={() => {
-                        props.deleteItem(item.key)
-                    }} icon="trash" />
-
-                    {/* <FontAwesomeIcon className="faicons margin-right-12" onClick={() => {
-                        props.toggleComplete(item.key)
-                    }} icon="strikethrough" /> */}
-
-                </span>
-            </p>
+            </div>
+            <FontAwesomeIcon className="faicons row align-self-center" onClick={() => {
+                props.deleteTask(item.key)
+            }} icon="trash" />
 
         </div>
     })
@@ -31,7 +28,9 @@ function ListItems(props) {
             {listItems}
         </FlipMove>
 
+
     </div>;
+
 }
 
 export default ListItems;

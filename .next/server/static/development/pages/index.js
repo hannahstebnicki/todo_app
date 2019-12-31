@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -130,8 +130,7 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTrash"]); // library.add(faStrikethrough);
-
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faTrash"]);
 class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
   constructor(props) {
     super(props);
@@ -142,15 +141,14 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
         key: ''
       }
     };
-    this.addItem = this.addItem.bind(this);
+    this.addTask = this.addTask.bind(this);
     this.handleInput = this.handleInput.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-    this.setUpdate = this.setUpdate.bind(this); // this.toggleComplete = this.toggleComplete.bind(this);
-    // this.moveItem = this.moveItem.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
+    this.setUpdate = this.setUpdate.bind(this);
   } // adds Items to the array
 
 
-  addItem(e) {
+  addTask(e) {
     e.preventDefault();
     const newItem = this.state.currentItem;
 
@@ -173,21 +171,21 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
         key: _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default()()
       }
     });
-  }
+  } // this method delets tasks by filtering the array 
 
-  deleteItem(key) {
+
+  deleteTask(key) {
     const filteredItems = this.state.items.filter(item => item.key !== key);
     this.setState({
       items: filteredItems
     });
-  }
+  } // this method converts the task to editable text
+
 
   setUpdate(text, key) {
-    console.log("items:" + this.state.items);
     const items = this.state.items;
     items.map(item => {
       if (item.key === key) {
-        console.log(item.key + "    " + key);
         item.text = text;
       }
     });
@@ -201,91 +199,91 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       className: "container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 72
       },
       __self: this
     }, __jsx("div", {
       className: "row ",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 73
       },
       __self: this
     }, __jsx("div", {
       className: "col-10 mx-auto col-md-3 mt-4 bg-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 74
       },
       __self: this
     }, __jsx("header", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 75
       },
       __self: this
     }, __jsx("link", {
       rel: "stylesheet",
       href: "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
       integrity: "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh",
-      crossorigin: "anonymous",
+      crossOrigin: "anonymous",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 82
+        lineNumber: 76
       },
       __self: this
     }), __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 83
+        lineNumber: 77
       },
       __self: this
     }, "My Todo List"), __jsx("h1", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 84
+        lineNumber: 78
       },
       __self: this
     }, "My Todo List"), __jsx("form", {
-      class: "input-group md-2",
-      onSubmit: this.addItem,
+      className: "input-group md-2",
+      onSubmit: this.addTask,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 85
+        lineNumber: 79
       },
       __self: this
     }, __jsx("input", {
-      className: "d-flex justify-content-center",
+      className: "d-flex justify-content-center ",
       type: "text",
       placeholder: "Enter Task",
       value: this.state.currentItem.text,
       onChange: this.handleInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 86
+        lineNumber: 80
       },
       __self: this
     }), __jsx("button", {
-      class: "btn btn-outline-secondary bg-info text-white ",
+      className: "btn btn-outline-secondary bg-info text-white ",
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 89
+        lineNumber: 81
       },
       __self: this
     }, "Add")), __jsx("p", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 91
+        lineNumber: 83
       },
       __self: this
     }, this.state.items.text), __jsx(_components_ListItems__WEBPACK_IMPORTED_MODULE_2__["default"], {
       items: this.state.items,
-      deleteItem: this.deleteItem,
+      deleteTask: this.deleteTask,
       setUpdate: this.setUpdate,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 93
+        lineNumber: 85
       },
       __self: this
     })))));
@@ -321,21 +319,40 @@ function ListItems(props) {
   const items = props.items;
   const listItems = items.map(item => {
     return __jsx("div", {
-      className: "list",
+      className: "list input-group mb-3",
       key: item.key,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 9
+        lineNumber: 11
       },
       __self: this
-    }, __jsx("p", {
+    }, __jsx("div", {
+      className: "input-group-prepend",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 10
+        lineNumber: 12
+      },
+      __self: this
+    }, __jsx("div", {
+      className: "input-group-text",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 13
       },
       __self: this
     }, __jsx("input", {
+      type: "checkbox",
+      className: "strikeThrough",
+      "aria-label": "Checkbox for following text input",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 14
+      },
+      __self: this
+    })), __jsx("input", {
       type: "text",
+      className: "form-control",
+      "aria-label": "Text input with checkbox",
       id: item.key,
       value: item.text,
       onChange: e => {
@@ -343,32 +360,26 @@ function ListItems(props) {
       },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 11
+        lineNumber: 16
       },
       __self: this
-    }), __jsx("span", {
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 14
-      },
-      __self: this
-    }, __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
-      className: "faicons",
+    })), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+      className: "faicons row align-self-center",
       onClick: () => {
-        props.deleteItem(item.key);
+        props.deleteTask(item.key);
       },
       icon: "trash",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 20
       },
       __self: this
-    }))));
+    }));
   });
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 26
     },
     __self: this
   }, __jsx(react_flip_move__WEBPACK_IMPORTED_MODULE_2___default.a, {
@@ -376,7 +387,7 @@ function ListItems(props) {
     easing: "ease-in-out",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 27
     },
     __self: this
   }, listItems));
@@ -421,7 +432,7 @@ const Index = () => __jsx("div", {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!******************************!*\
   !*** multi ./pages/index.js ***!
   \******************************/
