@@ -23,7 +23,7 @@ export class App extends Component {
         this.setUpdate = this.setUpdate.bind(this);
 
     }
-    // adds Items to the array
+    // adds Items to array
     addTask(e) {
         e.preventDefault();
         const newItem = this.state.currentItem;
@@ -71,7 +71,7 @@ export class App extends Component {
         return (
             < div className="container" >
                 <div className="row ">
-                    <div className="col-10 mx-auto col-md-3 mt-4 bg-info" >
+                    <div className="col-6 mx-auto col-md-3 mt-4 bg-info" >
                         <header>
                             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossOrigin="anonymous"></link>
                             <title>My Todo List</title>
