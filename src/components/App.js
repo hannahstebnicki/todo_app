@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faTrash);
 
-export class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +20,7 @@ export class App extends Component {
     this.deleteTask = this.deleteTask.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
   }
+
   // adds Items to array
   addTask(e) {
     e.preventDefault();
@@ -35,6 +36,7 @@ export class App extends Component {
       });
     }
   }
+
   handleInput(e) {
     this.setState({
       currentItem: {
@@ -43,6 +45,7 @@ export class App extends Component {
       }
     });
   }
+
   // this method delets tasks by filtering the array
   deleteTask(key) {
     const filteredItems = this.state.items.filter(item => item.key !== key);
@@ -50,6 +53,7 @@ export class App extends Component {
       items: filteredItems
     });
   }
+
   // this method converts the task to editable text
   setUpdate(text, key) {
     const items = this.state.items;
@@ -75,7 +79,13 @@ export class App extends Component {
                 crossOrigin="anonymous"
               ></link>
               <title>My Todo List</title>
-              <h1>My Todo List</h1>
+              <h1 style={{
+                color: 'white',
+                fontSize: '35px',
+                marginTop: '10px',
+                padding: '2px',
+                textTransform: 'uppercase',
+              }}>My Todo List</h1>
               <form className="input-group md-2" onSubmit={this.addTask}>
                 <input
                   className="d-flex justify-content-center "
@@ -83,7 +93,7 @@ export class App extends Component {
                   placeholder="Enter Task"
                   value={this.state.currentItem.text}
                   onChange={this.handleInput}
-                ></input>
+                />
                 <button
                   className="btn btn-outline-secondary bg-info text-white "
                   type="submit"
@@ -92,7 +102,6 @@ export class App extends Component {
                 </button>
               </form>
               <p>{this.state.items.text}</p>
-
               <ListItems
                 items={this.state.items}
                 deleteTask={this.deleteTask}
@@ -105,5 +114,3 @@ export class App extends Component {
     );
   }
 }
-
-export default App;
