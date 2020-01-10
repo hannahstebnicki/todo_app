@@ -1,4 +1,4 @@
-# todo_app
+# TODO APP
 
 Todo_App is an App for creating a todo list with the capability of checking off completed tasks, editing, and deleting. 
 
@@ -6,14 +6,16 @@ Todo_App is an App for creating a todo list with the capability of checking off 
 
 Use the package manager [npm](https://www.npmjs.com/get-npm) to install todo_app.
 
+From TODO dirctory:
 ```bash
-npm install todo_app
+yarn
+
 ```
 
 ## Usage
 
 ```
-npm run dev
+yarn dev
 
 
 Enter task into text input space.
