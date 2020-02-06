@@ -483,12 +483,12 @@ $export($export.S, 'Date', { now: function () { return new Date().getTime(); } }
 /*!*******************************!*\
   !*** ./src/components/App.js ***!
   \*******************************/
-/*! exports provided: App, default */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return App; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/date/now */ "./node_modules/@babel/runtime-corejs2/core-js/date/now.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_date_now__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
@@ -498,9 +498,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "@fortawesome/free-solid-svg-icons");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _Hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Hooks */ "./src/components/Hooks.js");
 
 var _jsxFileName = "/Users/hannah/workspace/todo_app/src/components/App.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
 
 
 
@@ -520,6 +522,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
     this.handleInput = this.handleInput.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
+    this.clearAll = this.clearAll.bind(this);
   } // adds Items to array
 
 
@@ -527,7 +530,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
     e.preventDefault();
     const newItem = this.state.currentItem;
 
-    if (newItem.text !== "") {
+    if (newItem.text !== "".trim()) {
       const items = [...this.state.items, newItem];
       this.setState({
         items: items,
@@ -569,32 +572,39 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
     });
   }
 
+  clearAll(key) {
+    const filteredItems = this.state.items.filter(item => item.key === key);
+    this.setState({
+      items: filteredItems
+    });
+  }
+
   render() {
     return __jsx("div", {
       className: "container",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 67
+        lineNumber: 81
       },
       __self: this
     }, __jsx("div", {
       className: "row ",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 68
+        lineNumber: 82
       },
       __self: this
     }, __jsx("div", {
       className: "col-6 mx-auto col-md-3 mt-4 bg-info",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 69
+        lineNumber: 83
       },
       __self: this
     }, __jsx("header", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 70
+        lineNumber: 84
       },
       __self: this
     }, __jsx("link", {
@@ -604,19 +614,26 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       crossOrigin: "anonymous",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 71
+        lineNumber: 85
       },
       __self: this
     }), __jsx("title", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 77
+        lineNumber: 91
       },
       __self: this
     }, "My Todo List"), __jsx("h1", {
+      style: {
+        color: 'white',
+        fontSize: '35px',
+        marginTop: '10px',
+        padding: '2px',
+        textTransform: 'uppercase'
+      },
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 78
+        lineNumber: 92
       },
       __self: this
     }, "My Todo List"), __jsx("form", {
@@ -624,7 +641,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       onSubmit: this.addTask,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 79
+        lineNumber: 99
       },
       __self: this
     }, __jsx("input", {
@@ -635,7 +652,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       onChange: this.handleInput,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 80
+        lineNumber: 100
       },
       __self: this
     }), __jsx("button", {
@@ -643,29 +660,74 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
       type: "submit",
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 87
+        lineNumber: 107
       },
       __self: this
-    }, "Add")), __jsx("p", {
+    }, "Add")), __jsx("form", {
+      className: "input-group md-2",
+      onSubmit: this.clearAll,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 94
+        lineNumber: 115
+      },
+      __self: this
+    }, __jsx("button", {
+      className: "btn btn-outline-secondary bg-info text-white float-right",
+      type: "submit",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 116
+      },
+      __self: this
+    }, "Clear All")), __jsx("p", {
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 123
       },
       __self: this
     }, this.state.items.text), __jsx(_ListItems__WEBPACK_IMPORTED_MODULE_2__["default"], {
       items: this.state.items,
       deleteTask: this.deleteTask,
       setUpdate: this.setUpdate,
+      clearAll: this.clearAll,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 96
+        lineNumber: 125
       },
       __self: this
     })))));
   }
 
 }
-/* harmony default export */ __webpack_exports__["default"] = (App);
+
+/***/ }),
+
+/***/ "./src/components/Hooks.js":
+/*!*********************************!*\
+  !*** ./src/components/Hooks.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return useLocalState; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function useLocalState(localItem) {
+  const {
+    0: local,
+    1: setState
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(localStorage.getItem(localItem));
+
+  function setLocal(newItem) {
+    localStorage.setItem(localItem, newItem);
+    setState(newItem);
+  }
+
+  return [local, setLocal];
+}
 
 /***/ }),
 
@@ -678,6 +740,7 @@ class App extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ListItems; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "@fortawesome/react-fontawesome");
@@ -689,85 +752,78 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-
 function ListItems(props) {
-  const items = props.items;
-  const tasks = items.map(item => {
-    return __jsx("div", {
-      className: "list input-group mb-3",
-      key: item.key,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 9
-      },
-      __self: this
-    }, __jsx("div", {
-      className: "input-group-prepend",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 10
-      },
-      __self: this
-    }, __jsx("div", {
-      className: "input-group-text",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 11
-      },
-      __self: this
-    }, __jsx("input", {
-      type: "checkbox",
-      "aria-label": "Checkbox for following text input",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 12
-      },
-      __self: this
-    })), __jsx("input", {
-      type: "text",
-      className: "form-control",
-      "aria-label": "Text input with checkbox",
-      id: item.key,
-      value: item.text,
-      onChange: e => {
-        props.setUpdate(e.target.value, item.key);
-      },
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 17
-      },
-      __self: this
-    })), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
-      className: "faicons row align-self-center",
-      onClick: () => {
-        props.deleteTask(item.key);
-      },
-      icon: "trash",
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 28
-      },
-      __self: this
-    }));
-  });
-  return __jsx("div", {
+  const {
+    items,
+    setUpdate,
+    deleteTask
+  } = props;
+  const tasks = items.map(item => __jsx("div", {
+    className: "list input-group mb-3",
+    key: item.key,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 39
+      lineNumber: 14
     },
     __self: this
-  }, __jsx(react_flip_move__WEBPACK_IMPORTED_MODULE_2___default.a, {
+  }, __jsx("div", {
+    className: "input-group-prepend",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 15
+    },
+    __self: this
+  }, __jsx("div", {
+    className: "input-group-text",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, __jsx("input", {
+    type: "checkbox",
+    "aria-label": "Checkbox for following text input",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  })), __jsx("input", {
+    type: "text",
+    className: "form-control",
+    "aria-label": "Text input with checkbox",
+    id: item.key,
+    value: item.text,
+    onChange: e => {
+      setUpdate(e.target.value, item.key);
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    },
+    __self: this
+  })), __jsx(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__["FontAwesomeIcon"], {
+    className: "faicons row align-self-center",
+    onClick: () => {
+      deleteTask(item.key);
+    },
+    icon: "trash",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 33
+    },
+    __self: this
+  })));
+  return __jsx(react_flip_move__WEBPACK_IMPORTED_MODULE_2___default.a, {
     duration: 300,
     easing: "ease-in-out",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 44
     },
     __self: this
-  }, tasks));
+  }, tasks);
 }
-
-/* harmony default export */ __webpack_exports__["default"] = (ListItems);
 
 /***/ }),
 
@@ -780,27 +836,21 @@ function ListItems(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/App */ "./src/components/App.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_App__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/App */ "./src/components/App.js");
 var _jsxFileName = "/Users/hannah/workspace/todo_app/src/pages/index.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
-const Index = () => __jsx("div", {
+const Index = () => __jsx(_components_App__WEBPACK_IMPORTED_MODULE_1__["default"], {
   __source: {
     fileName: _jsxFileName,
-    lineNumber: 5
+    lineNumber: 4
   },
   __self: undefined
-}, __jsx(_components_App__WEBPACK_IMPORTED_MODULE_0__["default"], {
-  __source: {
-    fileName: _jsxFileName,
-    lineNumber: 6
-  },
-  __self: undefined
-}));
+});
 
 /* harmony default export */ __webpack_exports__["default"] = (Index);
 

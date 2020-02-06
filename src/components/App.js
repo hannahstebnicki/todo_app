@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ListItems from "./ListItems";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { useLocalState } from "./Hooks";
 
 library.add(faTrash);
 
@@ -19,13 +20,14 @@ export default class App extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.deleteTask = this.deleteTask.bind(this);
     this.setUpdate = this.setUpdate.bind(this);
+    this.clearAll = this.clearAll.bind(this);
   }
 
   // adds Items to array
   addTask(e) {
     e.preventDefault();
     const newItem = this.state.currentItem;
-    if (newItem.text !== "") {
+    if (newItem.text !== "".trim()) {
       const items = [...this.state.items, newItem];
       this.setState({
         items: items,
@@ -66,6 +68,14 @@ export default class App extends Component {
       items: items
     });
   }
+
+  clearAll(key) {
+    const filteredItems = this.state.items.filter(item => item.key === key);
+    this.setState({
+      items: filteredItems
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -95,18 +105,30 @@ export default class App extends Component {
                   onChange={this.handleInput}
                 />
                 <button
+
                   className="btn btn-outline-secondary bg-info text-white "
                   type="submit"
                 >
                   Add
                 </button>
               </form>
+              <form className="input-group md-2" onSubmit={this.clearAll}>
+                <button
+                  className="btn btn-outline-secondary bg-info text-white float-right"
+                  type="submit"
+                >
+                  Clear All
+                </button>
+              </form>
               <p>{this.state.items.text}</p>
+
               <ListItems
                 items={this.state.items}
                 deleteTask={this.deleteTask}
                 setUpdate={this.setUpdate}
+                clearAll={this.clearAll}
               />
+
             </header>
           </div>
         </div>
